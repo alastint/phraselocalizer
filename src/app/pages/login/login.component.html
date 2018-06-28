@@ -1,0 +1,13 @@
+<div class="login-page">
+  <form
+    class="login-form"
+    #loginForm
+    (submit)="authenticate(user)"
+  >
+    <h2>Phrase Localizer</h2>
+    <h4>Log In</h4>
+    <input placeholder="Email" class="login-input" type="email" [(ngModel)]="user.email" autoComplete="new-email" name="email">
+    <input placeholder="Password" class="login-input" type="password" [(ngModel)]="user.password" autoComplete="new-password" name="password">
+    <button class="login-button" type="submit">LOGIN</button>
+  </form>
+</div>
