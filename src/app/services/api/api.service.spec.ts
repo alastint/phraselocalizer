@@ -131,7 +131,7 @@ describe(`Service: ApiService `, () => {
      */
     it('should return mockRespData value on getJson',
       inject([ApiService, XHRBackend], (apiService, mockBackend) => {
-        let mockResp: any = new ResponseOptions({
+        const mockResp: any = new ResponseOptions({
           status: 200,
           statusText: 'Ok',
           body: JSON.stringify(mockRespData)

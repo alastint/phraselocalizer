@@ -4,11 +4,7 @@ import {
 } from '@angular/core';
 
 import { AppState } from '../../app.service';
-
-interface IAuthData {
-  email: string;
-  password: string;
-}
+import { IAuthData } from '../../shared/interfaces';
 
 @Component({
   selector: 'login',
@@ -16,7 +12,6 @@ interface IAuthData {
   styleUrls: [ './login.component.css' ],
   templateUrl: './login.component.html'
 })
-
 
 export class LoginComponent implements OnInit {
   /**
@@ -40,7 +35,11 @@ export class LoginComponent implements OnInit {
   }
 
   public authenticate(data: IAuthData) {
-    console.log('authenticate data: ', data);
+    if (data.email && data.password) {
+      console.log('authenticate data: ', data);
+      data.email = '';
+      data.password = '';
+    }
   }
 
   public submitState(value: string) {

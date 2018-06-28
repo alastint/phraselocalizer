@@ -22,8 +22,6 @@ import * as services from './services/';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
-const mapValuesToArray = (obj) => Object.keys(obj).map((key: any) => obj[key]);
-// Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState
@@ -36,8 +34,10 @@ const APP_PROVIDERS = [
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    // ...mapValuesToArray(components),
-    ...mapValuesToArray(pages)
+    pages.LoginComponent,
+    pages.HomeComponent,
+    pages.AboutComponent,
+    pages.NoContentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,7 @@ const APP_PROVIDERS = [
   providers: [
     environment.ENV_PROVIDERS,
     APP_PROVIDERS,
-    ...mapValuesToArray(services)
+    services.ApiService
   ]
 })
 export class AppModule {}
