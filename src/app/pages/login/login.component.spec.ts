@@ -1,22 +1,20 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
-  inject,
   async,
   TestBed,
   ComponentFixture,
   getTestBed
 } from '@angular/core/testing';
-import { Component } from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { IAuthData } from '../../shared/interfaces';
 
 /**
  * Load the implementations that should be tested.
  */
-import { AppState } from '../app.service';
-import { LoginComponent } from './home.component';
-import { Title } from './title';
+import { AppState } from '../../app.service';
+import { LoginComponent } from './login.component';
 
-describe(`Home`, () => {
+describe(`Login component`, () => {
   let comp: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let injector: TestBed;
@@ -31,7 +29,7 @@ describe(`Home`, () => {
       declarations: [LoginComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [HttpClientTestingModule],
-      providers: [AppState, Title]
+      providers: [AppState]
     })
 
       /**
@@ -56,12 +54,30 @@ describe(`Home`, () => {
     fixture.detectChanges();
   });
 
-  it('should have default data', () => {
+  it('should have user object', () => {
+    expect(typeof comp.user).toEqual('object');
+  });
+
+  it('should have authenticate function', () => {
+    expect(typeof comp.authenticate).toEqual('function');
+  });
+
+  it('should have default data in localState', () => {
     expect(comp.localState).toEqual({ value: '' });
   });
 
-  it('should have a title', () => {
-    expect(!!comp.title).toEqual(true);
+  it('should have user object with email and password properties', () => {
+    const testUser: IAuthData = { email: '', password: '' };
+    expect(comp.user).toEqual(testUser);
+  });
+
+  it('should invoke authenticate function and clear user data', () => {
+    const testUserEmpty: IAuthData = { email: '', password: '' };
+    const testUserFulfilled: IAuthData = { email: 'user@dummy.com', password: '123qwe' };
+    expect(comp.user).toEqual(testUserEmpty);
+    comp.user = testUserFulfilled;
+    comp.authenticate(testUserFulfilled);
+    expect(comp.user).toEqual(testUserEmpty);
   });
 
   it('should log ngOnInit', () => {

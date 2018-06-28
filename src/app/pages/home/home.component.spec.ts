@@ -1,22 +1,19 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import {
-  inject,
   async,
   TestBed,
   ComponentFixture,
   getTestBed
 } from '@angular/core/testing';
-import { Component } from '@angular/core';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 /**
  * Load the implementations that should be tested.
  */
-import { AppState } from '../app.service';
+import { AppState } from '../../app.service';
 import { HomeComponent } from './home.component';
-import { Title } from './title';
 
-describe(`Home`, () => {
+describe(`Home component`, () => {
   let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let injector: TestBed;
@@ -31,7 +28,7 @@ describe(`Home`, () => {
       declarations: [HomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [HttpClientTestingModule],
-      providers: [AppState, Title]
+      providers: [AppState]
     })
 
       /**
@@ -60,9 +57,9 @@ describe(`Home`, () => {
     expect(comp.localState).toEqual({ value: '' });
   });
 
-  it('should have a title', () => {
-    expect(!!comp.title).toEqual(true);
-  });
+  // it('should have a title', () => {
+  //   expect(!!comp.title).toEqual(true);
+  // });
 
   it('should log ngOnInit', () => {
     spyOn(console, 'log');
