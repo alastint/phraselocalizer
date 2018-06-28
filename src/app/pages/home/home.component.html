@@ -1,0 +1,27 @@
+<div>
+  <h1 class="sample-content">Your Content Here</h1>
+
+  <hr>
+
+  <div>
+    For hot module reloading run
+    <pre>npm run start:hmr</pre>
+  </div>
+
+  <hr>
+
+  <div>
+    <h4>Local State</h4>
+
+    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+
+      <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
+
+      <button>Submit Value</button>
+    </form>
+
+    <pre>this.localState = {{ localState | json }}</pre>
+
+  </div>
+
+</div>
